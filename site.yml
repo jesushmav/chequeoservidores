@@ -1,6 +1,8 @@
 ---
-- name: "Informacion de servidores
+- name: "Informacion de servidores"
+  serial: 1
   hosts: all
-  become: true
-  roles:
-    - role: info
+  tasks:
+    - name: "Obtener informacion"
+      include_role:
+        name: chequeoservidores

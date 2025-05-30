@@ -1,0 +1,16 @@
+- name: "Hostname short"
+  debug:
+    msg: "El nombre corto del servidor es: {{ ansible_facts['hostname'] }}"
+- name: "Hostname long"
+  debug:
+    msg: "El nombre largo del servidor es: {{ ansible_facts['nodename'] }}"
+- name: "Inicializar valor CKNAME"
+  set_fact:
+    CKNAME: "Hostname_OK"
+- name: "Comprobar nombre"
+  set_fact:
+    CKNAME: "NOK_ImageHostname"
+  when: "'img' in ansible_facts['hostname']"
+- name: "Visualizar contenido de CKNAME"
+  debug:
+    var: CKNAME

@@ -1,0 +1,14 @@
+- name: "Inicializar variable mac_ips"
+  ansible.builtin.set_fact:
+    mac_ips: ''
+- name: "Obtener interfaces de red"
+  ansible.builtin.set_fact:
+    interfaces_list: "{{ ansible_facts['interfaces'] | join (' ') }}"
+- name: "agregar mac a mac_ips"
+  ansible.builtin.set_fact:
+    mac_ips: "{{ mac_ips }} {{ ansible_facts[item]['macaddress'] }}"
+  loop: "{{ ansible_facts['interfaces'] }}"
+  when: "{{ ansible_facts[item]['macaddress'] is defined }}"
+- name: "Ver variable mac_ips"
+  ansible.builtin.debug:
+    var: mac_ips

@@ -1,0 +1,6 @@
+---
+- name: "Informacion de servidores
+  hosts: all
+  become: true
+  roles:
+    - role: info

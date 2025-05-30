@@ -1,0 +1,6 @@
+- name: "memoria usada"
+  debug: 
+    msg: "La memoria total es: {{ ansible_facts['memory_mb']['real']['total'] }}"
+- name: "memoria libre"
+  debug: 
+    msg: "La memoria libre es: {{ ansible_facts['memory_mb']['real']['free'] }}"

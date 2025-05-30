@@ -1,0 +1,14 @@
+- name: "Inicializar variable dev_ips"
+  ansible.builtin.set_fact:
+    dev_ips: ''
+- name: "agregar datos a dev_ips"
+  ansible.builtin.set_fact:
+    dev_ips: "{{ dev_ips }}{{ ansible_facts[item]['ipv4']['address']}}/{{ ansible_facts[item]['ipv4']['prefix']}}:{{ item }} "
+    # mac_ips: "{{ mac_ips }} {{ ansible_facts[item]['macaddress'] }}"
+  loop: "{{ ansible_facts['interfaces'] }}"
+  when: 
+    - ansible_facts[item]['ipv4']['prefix'] is defined  
+    - ansible_facts[item]['macaddress'] is defined 
+- name: "Ver variable dev_ips"
+  ansible.builtin.debug:
+    var: dev_ips

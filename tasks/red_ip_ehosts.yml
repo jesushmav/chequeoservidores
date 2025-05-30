@@ -1,0 +1,16 @@
+- name: "Leer /etc/hosts"
+  slurp:
+    src: /etc/hosts
+  register: etc_hosts
+  no_log: true
+- name: "buscar valor en el fichero /etc/hosts"
+  debug:
+    msg: "{{ etc_hosts['content'] | b64decode | regex_findall (ipadresses) }}"
+  register: busquedaip  
+  ignore_errors: true
+  no_log: true
+- name: "Actualizar variable EHOST"
+  set_fact:
+    EHOST: 'IPonHOSTS_OK'
+  when: ipadresses == busquedaip.msg |join
+  no_log: true

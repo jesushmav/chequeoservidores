@@ -1,0 +1,4 @@
+- name: "Numero de cpus"
+  debug:
+    msg: "El numero de cpus es : {{ ansible_facts['processor_count'] }}"
+  

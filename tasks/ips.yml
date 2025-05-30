@@ -1,0 +1,7 @@
+- name: "Asignar valor a ips"
+  ansible.builtin.set_fact:
+    ips: "{{ ansible_facts['all_ipv4_addresses'] | join (' ') }}"
+- name: "Ver valor ips"
+  ansible.builtin.debug:
+    var: ips
+

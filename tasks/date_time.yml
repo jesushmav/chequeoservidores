@@ -1,0 +1,4 @@
+- name: "Fecha del servidor"
+  debug:
+    msg: "La fecha del servidor es: {{ ansible_facts['date_time']['date'] }} {{ ansible_facts['date_time']['time'] }}"
+  

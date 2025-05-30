@@ -1,0 +1,6 @@
+- name: "Obtener kernel"
+  set_fact:
+    kernel: "{{ ansible_facts['kernel']  }}"
+- name: "Ver kernel"
+  debug:
+    msg: "{{ kernel }}"

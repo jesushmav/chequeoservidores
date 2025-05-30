@@ -1,0 +1,6 @@
+- name: "Obtener la version de Rhel"
+  set_fact:
+    rhelvf: "{{ ansible_facts['distribution_version']  }}"
+- name: "Ver version"
+  debug:
+    msg: "{{ rhelvf }}"

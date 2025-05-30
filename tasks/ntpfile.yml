@@ -1,0 +1,30 @@
+- name: "Obtener la version de RHEL mayor"
+  set_fact:
+    rhelvmayor: "{{ ansible_facts['distribution_major_version']  }}"
+- name: "Obtener datos para versiones superiores a rhel7"
+  block:
+    - name: "Capturar configuracion"
+      ansible.builtin.shell: |
+        /usr/bin/cat /etc/chrony.conf |grep -i server |grep -v "#" |awk '{print $2}' | paste -sd ","
+      register: salidantpfile
+    - name: "Asignar valor a ntpfile"
+      ansible.builtin.set_fact:
+        ntpfile: "{{ salidantpfile.stdout }}"
+    - name: "Visualizar valor de ntpfile"
+      ansible.builtin.debug:
+        msg: "El valor de ntpfile es {{ ntpfile }}"
+  when: rhelvmayor | int > 7
+
+- name: "Obtener datos para versiones rhel7 o inferiores"
+  block:
+    - name: "Capturar configuracion"
+      ansible.builtin.shell: |
+        /usr/bin/cat /etc/ntp.conf |grep -i server |grep -v "#" |awk '{print $2}' | paste -sd ","
+      register: salidantpfile
+    - name: "Asignar valor a ntpfile"
+      ansible.builtin.set_fact:
+        ntpfile: "{{ salidantpfile.stdout }}"
+    - name: "Visualizar valor de ntpfile"
+      ansible.builtin.debug:
+        msg: "El valor de ntpfile es {{ ntpfile }}"
+  when: rhelvmayor | int < 8

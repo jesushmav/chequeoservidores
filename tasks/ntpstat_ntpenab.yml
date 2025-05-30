@@ -1,0 +1,10 @@
+- name: "Obtener la version de RHEL mayor"
+  set_fact:
+    rhelvmayor: "{{ ansible_facts['distribution_major_version']  }}"
+- name: "Asignar valor a ntpstat"
+  set_fact:
+    ntpstat: "{{ ansible_facts.services['chronyd.service']['state'] }}"
+    ntpenab: "{{ ansible_facts.services['chronyd.service']['status'] }}"
+- name: "Visualizar resultados"
+  ansible.builtin.debug:
+    msg: "La version mayor es {{ rhelvmayor }} y el estado del chronyd es {{ ntpstat }} y su configuracion de arranque es {{ ntpenab }}"

@@ -1,0 +1,34 @@
+- name: "Obtener la version de RHEL mayor"
+  set_fact:
+    rhelvmayor: "{{ ansible_facts['distribution_major_version']  }}"
+    sntpss: 'NTPSYNC_NOK'
+- name: "Obtener datos para versiones superiores a rhel7"
+  block:
+    - name: "Capturar configuracion"
+      ansible.builtin.shell: |
+        /usr/bin/chronyc sources |grep '*'
+      register: salidasntpss
+    - name: "Asignar valor a sntpss"
+      ansible.builtin.set_fact:
+        sntpss: 'NTPSYNC_OK'  
+      when: salidasntpss.stdout != ""
+    - name: "Visualizar valor de sntpss"
+      ansible.builtin.debug:
+        msg: "El valor de sntpss es {{ sntpss }}"
+  when: rhelvmayor | int > 7
+
+- name: "Obtener datos para versiones rhel7 o inferiores"
+  block:
+    - name: "Capturar configuracion"
+      ansible.builtin.shell: |
+        /usr/sbin/ntpq -p |grep '*'
+      register: salidasntpss
+      ignore_errors: true
+    - name: "Asignar valor a sntpss"
+      ansible.builtin.set_fact:
+        sntpss: 'NTPSYNC_OK'  
+      when: salidasntpss.stdout != ""
+    - name: "Visualizar valor de sntpss"
+      ansible.builtin.debug:
+        msg: "El valor de ntpfile es {{ sntpss }}"
+  when: rhelvmayor | int < 8

@@ -1,0 +1,16 @@
+- name: "Inicializar KERNELS_INST"
+  ansible.builtin.set_fact:
+    KERNELS_INST: ""
+- name: "Gather the package facts"
+  ansible.builtin.package_facts:
+    manager: auto
+  no_log: true
+- name: "Capturar nombre de kernels"
+  ansible.builtin.set_fact:
+    KERNELS_INST: "{{ KERNELS_INST }}{{ item.name }}-{{ item.version }}-{{ item.release }}.{{ item.arch }} "
+  loop: "{{ ansible_facts.packages['kernel'] }}" 
+  no_log: true
+    
+- name: "Ver contenido de KERNELS_INST"
+  ansible.builtin.debug:
+    msg: "Los kernels instalados en el servidor {{ inventory_hostname }} son {{ KERNELS_INST }}"

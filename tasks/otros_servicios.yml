@@ -1,0 +1,39 @@
+- name: "Servicios DB"
+  ansible.builtin.shell:
+    ps -fae |egrep -E "ora|db2|mysqld|mongodb" |grep -v grep |wc -l
+  register: salida_ps_db
+- name: "Asignar valor a PS_DB"
+  ansible.builtin.set_fact:
+    PS_DB: "{{ salida_ps_db.stdout }}"
+
+- name: "Servicios WEAS"
+  ansible.builtin.shell:
+    ps -fae |egrep -E "was|web|http" |grep -v grep |wc -l
+  register: salida_ps_weas
+- name: "Asignar valor a PS_WEAS"
+  ansible.builtin.set_fact:
+    PS_WEAS: "{{ salida_ps_weas.stdout }}"
+
+- name: "Servicios MQ"
+  ansible.builtin.shell:
+    ps -fae |egrep -E "mqm|rabbit" |grep -v grep |wc -l
+  register: salida_ps_mq
+- name: "Asignar valor a PS_MQ"
+  ansible.builtin.set_fact:
+    PS_MQ: "{{ salida_ps_mq.stdout }}"
+
+- name: "Servicios NFS"
+  ansible.builtin.shell:
+    ps -fae |grep "nfs" |grep -v grep |wc -l
+  register: salida_ps_nfs
+- name: "Asignar valor a NFS"
+  ansible.builtin.set_fact:
+    PS_NFS: "{{ salida_ps_nfs.stdout }}"
+
+- name: "Servicios SMB"
+  ansible.builtin.shell:
+    ps -fae |grep "smb" |grep -v grep |wc -l
+  register: salida_ps_smb
+- name: "Asignar valor a SMB"
+  ansible.builtin.set_fact:
+    PS_SMB: "{{ salida_ps_smb.stdout }}"

@@ -1,6 +1,6 @@
 - name: "Obtener tiempo en dias"
   set_fact:
-    uptimedays: "{{ ansible_facts['uptime_seconds'] / 86400 }}"
+    uptimedays: "{{ ansible_facts['uptime_seconds'] | int / 86400 }}"
 - name: "uptime en dias"
   debug:
     msg: "El servidor lleva encendido {{ uptimedays.split('.')[0] }} dias"

@@ -1,14 +1,14 @@
-- name: "IP 1"
-  debug:
-    msg: "La direccion ip 1 es : {{ ansible_facts['all_ipv4_addresses'][0] }}"
-- name: "IP 2"
-  debug:
-    msg: "La direccion ip 2 es : {{ ansible_facts['all_ipv4_addresses'][1] }}"
-  when: ansible_facts['all_ipv4_addresses'][1] is defined
-- name: "IP 3"
-  debug:
-    msg: "La direccion ip 3 es : {{ ansible_facts['all_ipv4_addresses'][2] }}"
-  when: ansible_facts['all_ipv4_addresses'][2] is defined
+#- name: "IP 1"
+#  debug:
+#    msg: "La direccion ip 1 es : {{ ansible_facts['all_ipv4_addresses'][0] }}"
+#- name: "IP 2"
+#  debug:
+#    msg: "La direccion ip 2 es : {{ ansible_facts['all_ipv4_addresses'][1] }}"
+#  when: ansible_facts['all_ipv4_addresses'][1] is defined
+#- name: "IP 3"
+#  debug:
+#    msg: "La direccion ip 3 es : {{ ansible_facts['all_ipv4_addresses'][2] }}"
+#  when: ansible_facts['all_ipv4_addresses'][2] is defined
 # - name: "Todas las IP"
 #   debug:
 #     msg: "La direcion IP es {{ item }}"

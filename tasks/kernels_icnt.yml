@@ -1,0 +1,11 @@
+- name: "Gather the package facts"
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: "Capturar numero de versiones de kernel"
+  ansible.builtin.set_fact:
+        KERNELS_ICNT: "{{ ansible_facts.packages['kernel'] | length }}" 
+    
+- name: "Ver contenido de KERNELS_ICNT"
+  ansible.builtin.debug:
+    msg: "El numero de kernels instalados en el servidor {{ inventory_hostname }} son {{ KERNELS_ICNT }}"

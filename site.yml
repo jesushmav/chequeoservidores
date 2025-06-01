@@ -1,6 +1,6 @@
 ---
 - name: "Informacion de servidores"
-  serial: 1
+  serial: 5
   hosts: all
   tasks:
     - name: "Obtener informacion"

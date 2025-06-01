@@ -1,16 +1,13 @@
-- name: "Leer /etc/hosts"
-  slurp:
-    src: /etc/hosts
-  register: etc_hosts
-  no_log: true
-- name: "buscar valor en el fichero /etc/hosts"
-  debug:
-    msg: "{{ etc_hosts['content'] | b64decode | regex_findall (ipadresses) }}"
-  register: busquedaip  
-  ignore_errors: true
+- name: "Comprobar si existe una linea que empiece con la IP del servidor en /etc/hosts"
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^{{ ipadresses }}'
+    line: '/#{{ ipadresses }}'
+  check_mode: True
+  register: salida
   no_log: true
 - name: "Actualizar variable EHOST"
   set_fact:
     EHOST: 'IPonHOSTS_OK'
-  when: ipadresses == busquedaip.msg |join
+  when: salida.msg == 'line replaced'
   no_log: true

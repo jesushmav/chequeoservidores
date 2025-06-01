@@ -1,0 +1,12 @@
+- name: Replace a localhost entry with our own
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^\#192\.168\.100\.100'
+    line: 192.168.100.100 SERVIDOR2
+  check_mode: True
+  register: salida
+
+- name: "Ver salida"
+  ansible.builtin.debug:
+    msg: "El valor es diferente"
+  when: salida.msg == 'line replaced'

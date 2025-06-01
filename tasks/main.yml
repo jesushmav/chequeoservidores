@@ -1,7 +1,7 @@
 ---
-# - name: "Ver gather"
-#   debug:
-#     var: ansible_facts
+- name: "Ver gather"
+  debug:
+    var: ansible_facts
 #- name: "Capturar service facts"
 #  ansible.builtin.service_facts:
 #- name: "Estado de los servicios"
@@ -9,40 +9,58 @@
 #    var: ansible_facts.services
 # - name: "Obtener hostnames"
 #   ansible.builtin.import_tasks:
-#       file: hostname.yml
+#     file: hostname.yml
 # - name: "Memoria"
 #   ansible.builtin.import_tasks:
-#       file: memoria.yml
-# - name: "red_ip"
-#   ansible.builtin.import_tasks:
-#       file: red_ip.yml
+#     file: memoria.yml
+- name: "red_ip"
+  ansible.builtin.import_tasks:
+    file: red_ip.yml
 # - name: "Dates"
 #   ansible.builtin.import_tasks:
-#       file: date_time.yml
+#     file: date_time.yml
 # - name: "cpus"
 #   ansible.builtin.import_tasks:
-#       file: cpu.yml
+#     file: cpu.yml
 # - name: "uptime"
 #   ansible.builtin.import_tasks:
-#       file: uptime.yml
+#     file: uptime.yml
 # - name: "ips"
 #   ansible.builtin.import_tasks:
-#       file: ips.yml
+#     file: ips.yml
 # - name: "dev_ips"
 #   ansible.builtin.import_tasks:
-#       file: dev_ips.yml
+#     file: dev_ips.yml
 # - name: "rhelvf"
 #   ansible.builtin.import_tasks:
-#       file: rhelvf.yml
+#     file: rhelvf.yml
 # - name: "kernel"
 #   ansible.builtin.import_tasks:
-#       file: kernel.yml
+#     file: kernel.yml
 # - name: "ntpstat"
 #   ansible.builtin.import_tasks:
 #     file: ntpstat_ntpenab.yml
 # - name: "ntpfile"
 #   ansible.builtin.import_tasks:
 #     file: ntpfile.yml
-- name: "sntpss"
-  ansible.builtin.import_tasks:
-    file: sntpss.yml
+#- name: "sntpss"
+#  ansible.builtin.import_tasks:
+#    file: sntpss.yml
+#- name: "otros_servicios"
+#  ansible.builtin.import_tasks:
+#    file: otros_servicios.yml
+# - name: "nmap"
+#   ansible.builtin.import_tasks:
+#     file: nmap.yml
+# - name: "tcpdump"
+#   ansible.builtin.import_tasks:
+#     file: tcpdump.yml
+# - name: "kernels_icnt"
+#   ansible.builtin.import_tasks:
+#     file: kernels_icnt.yml
+#- name: "kernels_ints"
+#  ansible.builtin.import_tasks:
+#    file: kernels_ints.yml
+#- name: "testlineinfile"
+#  ansible.builtin.import_tasks:
+#    file: testlineinfile.yml

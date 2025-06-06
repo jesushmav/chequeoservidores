@@ -1,0 +1,18 @@
+- name: "Inicializar variable"
+  ansible.builtin.set_fact:
+    DNS_SSH: 'KO'
+- name: "Comprobar si existe la entrada UseDNS no"
+  ansible.builtin.lineinfile:
+    path: /tmp/hola.txt
+    regexp: '^UseDNS no'
+    line: '#UseDNS no'
+  check_mode: True
+  register: salida
+- name: "Actualizar variable DNS_SSH"
+  ansible.builtin.set_fact:
+    DNS_SSH: OK
+  when: salida.msg == 'line replaced'
+  no_log: True
+- name: "Ver contenido"
+  ansible.builtin.debug:
+    msg: "El contenido es  {{ DNS_SSH }}"

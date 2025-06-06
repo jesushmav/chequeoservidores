@@ -1,14 +1,11 @@
-#- name: "Numero de cpus"
-#  debug:
-#    msg: "El numero de cpus es : {{ ansible_facts['processor_count'] }}"
-#- name: "Ver puntos de montaje"
-#  debug:
-#    var: ansible_facts['mounts']
-#- name: "Ver nombres de los puntos de montaje"
-#  debug:
-#    msg: "Punto de montaje de boot esssssssssssssssssssssssssssssss  {{ item.mount }}"
-#  loop: "{{ ansible_mounts }}"
-#  when: item.mount == '/boot'
+- name: "Ver puntos de montaje"
+  debug:
+    var: ansible_facts['mounts']
+- name: "Ver nombres de los puntos de montaje"
+  debug:
+    msg: "Punto de montaje de boot esssssssssssssssssssssssssssssss  {{ item.mount }}"
+  loop: "{{ ansible_mounts }}"
+  when: item.mount == '/boot'
 - name: "Capturar todos los datos de los vgs en vgslist"
   ansible.builtin.set_fact:
     vgslist: ""
@@ -21,10 +18,6 @@
   ansible.builtin.set_fact:
     vgslist: "{{ vgslist }} {{ item.key }},{{ item.value.size_g }};" 
   loop: "{{ ansible_lvm.vgs | dict2items }}"
-
-#- name: "Ver puntos de montaje"
-#  debug:
-#    var: ansible_mounts
 
 - name: "Ver puntos de montaje"
   debug:

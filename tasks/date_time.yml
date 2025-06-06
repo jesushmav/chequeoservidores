@@ -1,4 +1,11 @@
 - name: "Fecha del servidor"
   debug:
     msg: "La fecha del servidor es: {{ ansible_facts['date_time']['date'] }} {{ ansible_facts['date_time']['time'] }}"
+- name: "Fecha del servidor"
+  ansible.builtin.set_fact:
+    fechadb: "{{ ansible_facts['date_time']['date'] }} {{ ansible_facts['date_time']['time'] }}.000 {{ ansible_facts['date_time']['tz_offset'] }}"
+- name: "Ver fechadb"
+  ansible.builtin.debug:
+    msg: "La fechas es {{ fechadb }}"
+
   

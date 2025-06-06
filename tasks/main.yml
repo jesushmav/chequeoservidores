@@ -1,7 +1,7 @@
 ---
-- name: "Ver gather"
-  debug:
-    var: ansible_facts
+#- name: "Ver gather"
+#  debug:
+#    var: ansible_facts
 #- name: "Capturar service facts"
 #  ansible.builtin.service_facts:
 #- name: "Estado de los servicios"
@@ -13,15 +13,18 @@
 # - name: "Memoria"
 #   ansible.builtin.import_tasks:
 #     file: memoria.yml
-- name: "red_ip"
+#- name: "red_ip"
+#  ansible.builtin.import_tasks:
+#    file: red_ip.yml
+#- name: "Dates"
+#  ansible.builtin.import_tasks:
+#    file: date_time.yml
+- name: "cpus"
   ansible.builtin.import_tasks:
-    file: red_ip.yml
-# - name: "Dates"
-#   ansible.builtin.import_tasks:
-#     file: date_time.yml
-# - name: "cpus"
-#   ansible.builtin.import_tasks:
-#     file: cpu.yml
+    file: cpu.yml
+- name: "cpus"
+  ansible.builtin.import_tasks:
+    file: vgs_mounts.yml
 # - name: "uptime"
 #   ansible.builtin.import_tasks:
 #     file: uptime.yml
@@ -64,3 +67,6 @@
 #- name: "testlineinfile"
 #  ansible.builtin.import_tasks:
 #    file: testlineinfile.yml
+#- name: "DNS_SSH"
+#  ansible.builtin.import_tasks:
+#    file: dns_ssh.yml

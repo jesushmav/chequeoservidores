@@ -8,7 +8,7 @@
   when: item.mount == '/boot'
 - name: "Capturar todos los datos de los vgs en vgslist"
   ansible.builtin.set_fact:
-    vgslist: ""
+    vgslist: "{{ inventory_hostname }};"
 - name: "Ver vgs"
   debug:
     msg: "El nombre del vg es {{ item.key }} y el tamaño es {{ item.value.size_g }}"
@@ -16,7 +16,7 @@
 
 - name: "Agregar valores a vgslist"
   ansible.builtin.set_fact:
-    vgslist: "{{ vgslist }} {{ item.key }},{{ item.value.size_g }};" 
+    vgslist: "{{ vgslist }}{{ item.key }},{{ item.value.size_g }};" 
   loop: "{{ ansible_lvm.vgs | dict2items }}"
 
 - name: "Ver puntos de montaje"

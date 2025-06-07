@@ -1,0 +1,28 @@
+- name: "Inicializar variable"
+  ansible.builtin.set_fact:
+    DNS_SSH: 'KO'
+- ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    state: absent
+  check_mode: True
+  register: salida
+- name: "Ver salida"
+  ansible.builtin.debug:
+    var: salida
+
+# ok: [rhel7puesto1] => {
+#     "salida": {
+#         "changed": true,
+#         "failed": false
+
+
+
+
+#- name: "Actualizar variable DNS_SSH"
+#  ansible.builtin.set_fact:
+#    DNS_SSH: OK
+#  when: salida.msg == 'line replaced'
+#  no_log: True
+#- name: "Ver contenido"
+#  ansible.builtin.debug:
+#    msg: "El contenido es  {{ DNS_SSH }}"

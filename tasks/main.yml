@@ -19,12 +19,12 @@
 #- name: "Dates"
 #  ansible.builtin.import_tasks:
 #    file: date_time.yml
-- name: "cpus"
-  ansible.builtin.import_tasks:
-    file: cpu.yml
-- name: "cpus"
-  ansible.builtin.import_tasks:
-    file: vgs_mounts.yml
+#- name: "cpus"
+#  ansible.builtin.import_tasks:
+#    file: cpu.yml
+#- name: "cpus"
+#  ansible.builtin.import_tasks:
+#    file: vgs_mounts.yml
 # - name: "uptime"
 #   ansible.builtin.import_tasks:
 #     file: uptime.yml
@@ -70,3 +70,6 @@
 #- name: "DNS_SSH"
 #  ansible.builtin.import_tasks:
 #    file: dns_ssh.yml
+- name: "parametros_kernel_tcp"
+  ansible.builtin.import_tasks:
+    file: parametros_kernel_tcp.yml

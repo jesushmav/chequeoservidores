@@ -1,2 +1,2 @@
 # chequeoservidores
-Chequeo general de servidores
+Chequeo general de servidores linux

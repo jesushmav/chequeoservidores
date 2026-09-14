@@ -1,4 +1,4 @@
-- name: "Hostname short"
+- name: "Hostname corto"
   debug:
     msg: "El nombre corto del servidor es: {{ ansible_facts['hostname'] }}"
 - name: "Hostname long"

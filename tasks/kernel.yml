@@ -1,4 +1,4 @@
-- name: "Obtener kernel del servidor"
+- name: "Obtener kernel del servidor red hat"
   set_fact:
     kernel: "{{ ansible_facts['kernel']  }}"
 - name: "Ver kernel"

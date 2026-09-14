@@ -7,7 +7,7 @@
 - name: "Inicializar valor CKNAME"
   set_fact:
     CKNAME: "Hostname_OK"
-- name: "Comprobar Nombre corto del servidor"
+- name: "Comprobar Nombre corto del servidor y establecer CKNAME"
   set_fact:
     CKNAME: "NOK_ImageHostname"
   when: "'img' in ansible_facts['hostname']"

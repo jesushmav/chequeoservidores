@@ -9,6 +9,6 @@
   when: 
     - ansible_facts[item]['ipv4']['prefix'] is defined  
     - ansible_facts[item]['macaddress'] is defined 
-- name: "Ver variable dev_ips"
+- name: "Ver variable dev_ips finales"
   ansible.builtin.debug:
     var: dev_ips
